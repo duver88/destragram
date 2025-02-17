@@ -32,7 +32,7 @@
         <footer class="text-center p-5 text-gray-500 font-bold uppercase">
             Destagram - Todos los derechos reservador
             {{now()->format('Y M H:i')}}
-            Duberney Hernandez Corzo 
+            Duberney 
         </footer>
 
        
