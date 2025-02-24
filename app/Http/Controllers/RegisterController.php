@@ -2,9 +2,12 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\User;
+use Illuminate\Support\Str;
 use Illuminate\Http\Request;
-use PhpParser\Node\Expr\FuncCall;
 use ReflectionFunctionAbstract;
+use PhpParser\Node\Expr\FuncCall;
+use Illuminate\Support\Facades\Hash;
 
 class RegisterController extends Controller
 {
@@ -18,7 +21,10 @@ class RegisterController extends Controller
     {
         // dd($request);
         // dd($request->all());
+        //Modificar el request
+        $request->request->add(['username' => Str::slug($request->username)]);
 
+    
         //validacion 
         $request->validate([
             'name' => 'required|min:5|max:10',
@@ -28,7 +34,14 @@ class RegisterController extends Controller
       
         ]);
 
-        dd('Cuenta creada');
+        User::create([
+            'name' => $request->name,
+            'username' => $request->username,
+            'email' => $request->email,
+            'password' => Hash::make($request->password),
+        ]);
+
+       return redirect()->route('post.index');
     }
     
 }

@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\PostController;
 use App\Http\Controllers\RegisterController;
 use Illuminate\Support\Facades\Route;
 
@@ -9,6 +10,8 @@ Route::get('/', function () {
 
 Route::get('/crear-cuentaa', [RegisterController::class, 'index'])->name('register');
 Route::post('/crear-cuentaa', [RegisterController::class, 'store'])->name('crearcuneta');
+
+Route::get('/muro', [PostController::class, 'index'])->name('post.index');
 
 
 
