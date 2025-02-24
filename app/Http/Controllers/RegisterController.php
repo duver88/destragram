@@ -7,6 +7,7 @@ use Illuminate\Support\Str;
 use Illuminate\Http\Request;
 use ReflectionFunctionAbstract;
 use PhpParser\Node\Expr\FuncCall;
+use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Hash;
 
 class RegisterController extends Controller
@@ -40,7 +41,11 @@ class RegisterController extends Controller
             'email' => $request->email,
             'password' => Hash::make($request->password),
         ]);
+    
+        //Autenticar usuario
+        Auth::attempt($request->only('email', 'password'));
 
+        //Redireccionar a la pagina de muro 
        return redirect()->route('post.index');
     }
     
