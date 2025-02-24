@@ -8,7 +8,7 @@ Route::get('/', function () {
 });
 
 Route::get('/crear-cuentaa', [RegisterController::class, 'index'])->name('register');
-Route::post('/crear-cuentaa', [RegisterController::class, 'store']);
+Route::post('/crear-cuentaa', [RegisterController::class, 'store'])->name('crearcuneta');
 
 
 

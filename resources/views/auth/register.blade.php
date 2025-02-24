@@ -32,11 +32,15 @@
                     <label for="username" class="mb-2 block uppercase text-gray-500 font-bold ">UserName</label>
                     <input 
                     id="username"
-                    name="UserName"
+                    name="username"
                     type="text"
                     placeholder="Tu Nombre de Usuario"
-                    class="border p-3 w-full rounded-md"
+                    class="border p-3 w-full rounded-md @error('username') border-red-600 @enderror"
+                    value="{{ old('username') }}"
                     >
+                    @error('username')
+                    <p class="bg-red-600 text-white p-2 text-center rounded-md text-sm my-2 shadow-sm"> {{ $message }}</p>
+                    @enderror
                 </div>
 
                 <div class="mb-4">
@@ -46,8 +50,12 @@
                     name="email"
                     type="email"
                     placeholder="Tu Email"
-                    class="border p-3 w-full rounded-md"
+                    class="border p-3 w-full rounded-md @error('email') border-red-600 @enderror"
+                    value="{{ old('email') }}"
                     >
+                    @error('email')
+                    <p class="bg-red-600 text-white p-2 text-center rounded-md text-sm my-2 shadow-sm"> {{ $message }}</p>
+                    @enderror
                 </div>
 
 
@@ -58,8 +66,12 @@
                     name="password"
                     type="password"
                     placeholder="Tu contraseña"
-                    class="border p-3 w-full rounded-md"
+                    class="border p-3 w-full rounded-md @error('password') border-red-600 @enderror"
+                    value="{{ old('password') }}"
                     >
+                    @error('password')
+                    <p class="bg-red-600 text-white p-2 text-center rounded-md text-sm my-2 shadow-sm"> {{ $message }}</p>
+                    @enderror
                 </div>
 
                 <div class="mb-4">
@@ -69,8 +81,12 @@
                     name="password_confirmation"
                     type="password"
                     placeholder="Repite tu contraseña"
-                    class="border p-3 w-full rounded-md"
+                    class="border p-3 w-full rounded-md @error('password_confirmation') border-red-600 @enderror"
+                    value="{{ old('password_confirmation') }}"
                     >
+                    @error('password_confirmation')
+                    <p class="bg-red-600 text-white p-2 text-center rounded-md text-sm my-2 shadow-sm"> {{ $message }}</p>
+                    @enderror
                 </div>
 
                 <input 

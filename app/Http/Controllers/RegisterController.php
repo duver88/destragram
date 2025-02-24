@@ -21,9 +21,14 @@ class RegisterController extends Controller
 
         //validacion 
         $request->validate([
-            'name' => 'required|min:5|max:10'
+            'name' => 'required|min:5|max:10',
+            'username' => 'required|unique:users',
+            'email' => 'required|email|unique:users',
+            'password' => 'required|min:8|confirmed',
       
         ]);
+
+        dd('Cuenta creada');
     }
     
 }
