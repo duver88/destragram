@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\LoginController;
 use App\Http\Controllers\PostController;
 use App\Http\Controllers\RegisterController;
 use Illuminate\Support\Facades\Route;
@@ -10,8 +11,11 @@ Route::get('/', function () {
 
 Route::get('/crear-cuentaa', [RegisterController::class, 'index'])->name('register');
 Route::post('/crear-cuentaa', [RegisterController::class, 'store'])->name('crearcuneta');
+Route::get('/login', [LoginController::class, 'index'])->name('login');
+Route::post('/login', [LoginController::class, 'store'])->name('login');
 
-Route::get('/muro', [PostController::class, 'index'])->name('post.index');
+
+Route::get('/muro', [PostController::class, 'index'])->name('post.index')->middleware('auth');
 
 
 
