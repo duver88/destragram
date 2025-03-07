@@ -2,15 +2,17 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\User;
 use Illuminate\Http\Request;
 use PhpParser\Node\Expr\FuncCall;
 
 class PostController extends Controller
 {
+    public function index(User $user){
 
-
-
-    public function index(){
-       return view('layauts.dashboard');
+       // dd($user->username);
+       return view('layauts.dashboard', [
+           'user' => $user
+       ]);
     }
 }
