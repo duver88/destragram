@@ -46,7 +46,7 @@ class RegisterController extends Controller
         Auth::attempt($request->only('email', 'password'));
 
         //Redireccionar a la pagina de muro 
-       return redirect()->route('post.index');
+       return redirect()->route('post.index', Auth::user());
     }
     
 }

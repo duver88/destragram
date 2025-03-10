@@ -17,7 +17,17 @@
                     Destagram
                 </h1>
                 @auth
+                
                 <nav class="flex gap-2 items-center">
+
+                    <a href="{{ route('create.index')}}" class="flex items-center gap-2 bg-white border p-2 text-gray-500 rounded-sm uppercase font-bold cursor-pointer">
+                        <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="size-6">
+                            <path stroke-linecap="round" stroke-linejoin="round" d="M9 8.25H7.5a2.25 2.25 0 0 0-2.25 2.25v9a2.25 2.25 0 0 0 2.25 2.25h9a2.25 2.25 0 0 0 2.25-2.25v-9a2.25 2.25 0 0 0-2.25-2.25H15m0-3-3-3m0 0-3 3m3-3V15" />
+                          </svg>
+                          
+                        Crear 
+                    </a>
+
                     <p>hola <span class="text not-sr-only font-bold">{{ auth()->user()->username }}</span></p>
 
                     <form  method="POST" action="{{ route('logout')}}">

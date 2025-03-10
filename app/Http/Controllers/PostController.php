@@ -15,4 +15,8 @@ class PostController extends Controller
            'user' => $user
        ]);
     }
+
+    public function create(request $recuest){
+        return view('post.create');
+    }
 }
