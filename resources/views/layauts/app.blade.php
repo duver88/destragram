@@ -3,10 +3,11 @@
     <head>
         <meta charset="utf-8">
         <meta name="viewport" content="width=device-width, initial-scale=1">
-
+        @stack('style')
         <title>Destagram - @yield('titulo')</title>
 
        @vite('resources/css/app.css')
+       @vite('resources/js/app.js')
 
    
     </head>
@@ -27,8 +28,10 @@
                           
                         Crear 
                     </a>
-
-                    <p>hola <span class="text not-sr-only font-bold">{{ auth()->user()->username }}</span></p>
+                    <a href="{{ route('post.index', Auth::user())}}">
+                        <p>Bienvenido <span class="text not-sr-only font-bold">{{ auth()->user()->username }}</span></p>
+                    </a>
+                    
 
                     <form  method="POST" action="{{ route('logout')}}">
                         @csrf

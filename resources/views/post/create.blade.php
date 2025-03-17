@@ -1,14 +1,16 @@
 @extends('layauts.app')
 
+@push('style')
+    <link rel="stylesheet" href="https://unpkg.com/dropzone@5/dist/min/dropzone.min.css" type="text/css" />
+@endpush
 @section('name')
     Crea Una Nueva Publicación
 @endsection
 
-
 @section('contenido')
     <div class="md:flex md:items-center">
         <div class="md:w-1/2 px-10 ">
-            Imagen aca 
+          <form action="{{ route('imagen.index')}}" id="dropzone" method="POST" enctype="multipart/form-data" class="dropzone border-dashed border-2 w-full h-96 rouded flex flex-col justify-center items-center">@csrf</form> 
         </div>
 
         <div class="md:w-1/2 px-10 bg-white p-5 rounded-md shadow-md md:mt-0 mt-10">
