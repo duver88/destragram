@@ -14,10 +14,10 @@
         </div>
 
         <div class="md:w-1/2 px-10 bg-white p-5 rounded-md shadow-md md:mt-0 mt-10">
-            <form action="{{ route('register') }}" method="POST">
+            <form action="{{ route('post.store') }}" method="POST">
                 @csrf
                 <div class="mb-4">
-                    <label for="name" class="mb-2 block uppercase text-gray-500 font-bold ">Titulo</label>
+                    <label for="titulo" class="mb-2 block uppercase text-gray-500 font-bold ">Titulo</label>
                     <input 
                     id="titulo"
                     name="titulo"
@@ -26,23 +26,35 @@
                     class="border p-3 w-full rounded-md @error('titulo') border-red-600 @enderror"
                     value="{{ old('titulo') }}"
                     />
-                    @error('name')
+                    @error('titulo')
                     <p class="bg-red-600 text-white p-2 text-center rounded-md text-sm my-2 shadow-sm"> {{ $message }}</p>
                     @enderror
                 </div>
 
                 <div class="mb-4">
-                    <label for="name" class="mb-2 block uppercase text-gray-500 font-bold ">descripción </label>
+                    <label for="descripcion" class="mb-2 block uppercase text-gray-500 font-bold ">descripción </label>
                     <textarea 
-                    id="descripción "
-                    name="descripción "
+                    id="descripcion"
+                    name="descripcion"
                     placeholder="Tu Descripción "
-                    class="border p-3 w-full rounded-md @error('titulo') border-red-600 @enderror"
-                    />{{ old('descripción') }}</textarea>
-                    @error('name')
+                    class="border p-3 w-full rounded-md @error('descripcion') border-red-600 @enderror"
+                    >{{ old('descripcion') }}</textarea>
+                    @error('descripcion')
                     <p class="bg-red-600 text-white p-2 text-center rounded-md text-sm my-2 shadow-sm"> {{ $message }}</p>
                     @enderror
                 </div>
+
+               <div class="mb-5">
+                    <input 
+                    name="imagen"
+                    type="hidden"
+                    value="{{ old('imagen') }}"
+                    >
+                    @error('imagen')
+                    <p class="bg-red-600 text-white p-2 text-center rounded-md text-sm my-2 shadow-sm"> {{ $message }}</p>
+                    @enderror
+
+               </div>
 
                 <input 
                 type="submit"

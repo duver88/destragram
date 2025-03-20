@@ -17,10 +17,10 @@ class PostFactory extends Factory
     public function definition(): array
     {
         return [
-            'titulo' => $this->faker->sentence(5),
+            'titulo' => $this->faker->sentence(2),
             'descripcion' => $this->faker->sentence(13),
             'imagen'=> $this->faker->uuid() . 'jpg',
-            'user_id' => $this->faker->randomElement([12,13,14,15,16,17])
+            'user_id' => $this->faker->randomElement([1,2])
         ];
     }
 }

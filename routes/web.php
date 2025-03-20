@@ -19,10 +19,9 @@ Route::post('/login', [LoginController::class, 'store'])->name('login');
 Route::post('/logout', [LogoutController::class, 'store'])->name('logout');
 
 Route::get('/{user:username}', [PostController::class, 'index'])->name('post.index')->middleware('auth');
+//View post
+Route::post('/post', [PostController::class,'store'])->name('post.store');
 Route::get('/post/create', [PostController::class, 'create'])->name('create.index');
 //Imagen Controller
 
 Route::post('/imagen', [ImagenController::class, 'store'])->name('imagen.index');
-
-
-
