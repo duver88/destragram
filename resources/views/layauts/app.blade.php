@@ -12,47 +12,53 @@
    
     </head>
     <body class="bg-gray-100">
-        <header class="p-5 border-b bg-white shadow">
-            <div class="container mx-auto flex justify-between items-center">
-                <h1 class="text-3xl font-black">
+        <header class="bg-white shadow-md">
+            <div class="container mx-auto px-6 py-4 flex justify-between items-center">
+                
+                <!-- LOGO -->
+                <a href="{{ route('create.index') }}" class="text-4xl font-extrabold text-indigo-600 hover:text-indigo-800 transition duration-300">
                     Destagram
-                </h1>
-                @auth
-                
-                <nav class="flex gap-2 items-center">
-
-                    <a href="{{ route('create.index')}}" class="flex items-center gap-2 bg-white border p-2 text-gray-500 rounded-sm uppercase font-bold cursor-pointer">
-                        <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="size-6">
-                            <path stroke-linecap="round" stroke-linejoin="round" d="M9 8.25H7.5a2.25 2.25 0 0 0-2.25 2.25v9a2.25 2.25 0 0 0 2.25 2.25h9a2.25 2.25 0 0 0 2.25-2.25v-9a2.25 2.25 0 0 0-2.25-2.25H15m0-3-3-3m0 0-3 3m3-3V15" />
-                          </svg>
-                          
-                        Crear 
-                    </a>
-                    <a href="{{ route('post.index', Auth::user())}}">
-                        <p>Bienvenido <span class="text not-sr-only font-bold">{{ auth()->user()->username }}</span></p>
-                    </a>
-                    
-
-                    <form  method="POST" action="{{ route('logout')}}">
-                        @csrf
-                        <button type="submit" class="uppercase text-gray-600 text-sm"> cerrar sesión </button>
-                    </form>
-                    
-                    
+                </a>
+        
+                <!-- NAVEGACIÓN -->
+                <nav class="flex items-center space-x-4">
+                    @auth
+                        <!-- Botón Crear -->
+                        <a href="{{ route('create.index') }}" class="flex items-center gap-2 px-4 py-2 bg-indigo-600 text-white rounded-full hover:bg-indigo-700 transition duration-300 shadow-sm">
+                            <svg xmlns="http://www.w3.org/2000/svg" class="w-5 h-5" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 4v16m8-8H4"/>
+                            </svg>
+                            <span class="hidden sm:inline">Crear Post</span>
+                        </a>
+        
+                        <!-- Perfil -->
+                        <a href="{{ route('post.index', Auth::user()) }}" class="flex items-center gap-2 text-gray-700 hover:text-indigo-600 transition duration-300">
+                            <img src="https://ui-avatars.com/api/?name={{ Auth::user()->username }}" alt="avatar" class="w-8 h-8 rounded-full">
+                            <span class="hidden sm:inline font-semibold">{{ auth()->user()->username }}</span>
+                        </a>
+        
+                        <!-- Cerrar sesión -->
+                        <form method="POST" action="{{ route('logout') }}">
+                            @csrf
+                            <button type="submit" class="px-3 py-2 bg-red-500 text-white rounded-full hover:bg-red-600 transition duration-300 text-sm shadow-sm">
+                                Cerrar sesión
+                            </button>
+                        </form>
+        
+                    @endauth
+        
+                    @guest
+                        <a href="{{ route('login') }}" class="px-4 py-2 text-sm font-semibold text-gray-600 hover:text-indigo-600 transition duration-300">
+                            Login
+                        </a>
+                        <a href="{{ route('register') }}" class="px-4 py-2 bg-indigo-600 text-white text-sm font-semibold rounded-full hover:bg-indigo-700 transition duration-300 shadow-sm">
+                            Crear cuenta
+                        </a>
+                    @endguest
                 </nav>
-                @endauth
-
-                @guest
-                <nav class="flex gap-2 items-center">
-                    <a class="font-bold uppercase text-gray-600 text-sm" href="{{ route ('login')}}">Login</a>
-                    
-                    <a class="font-bold uppercase text-gray-600 text-sm" href="{{ route('register') }}">Crear Cuenta</a>
-                </nav>
-                @endguest
-                
             </div>
-
         </header>
+        
 
         <main class="container mx-auto mt-10">
             <h2 class="font-black text-center text-3xl mb-10" >@yield('titulo')</h2>

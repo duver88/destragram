@@ -14,8 +14,6 @@
             <form method="POST" action="{{route('login')}}">
                 @csrf
 
-                
-
                 <div class="mb-4">
                     <label for="email" class="mb-2 block uppercase text-gray-500 font-bold ">Email</label>
                     <input 

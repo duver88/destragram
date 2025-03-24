@@ -11,9 +11,12 @@ class PostController extends Controller
 {
     public function index(User $user){
 
+        $posts = Post::Where('user_id', $user->id)->get();
+
        // dd($user->username);
        return view('layauts.dashboard', [
-           'user' => $user
+           'user' => $user,
+           'posts' => $posts
        ]);
     }
 
@@ -29,7 +32,14 @@ class PostController extends Controller
             'imagen' => 'required'
        ]);
 
-       Post::create([
+    //    Post::create([
+    //     'titulo' => $recuest->titulo,
+    //     'descripcion' => $recuest->descripcion,
+    //     'imagen' => $recuest->imagen,
+    //     'user_id' => auth()->user()->id
+    // ]);
+
+    $recuest->user()->posts()->create([
         'titulo' => $recuest->titulo,
         'descripcion' => $recuest->descripcion,
         'imagen' => $recuest->imagen,
