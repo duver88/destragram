@@ -34,7 +34,7 @@
                         <!-- Perfil -->
                         <a href="{{ route('post.index', Auth::user()) }}" class="flex items-center gap-2 text-gray-700 hover:text-indigo-600 transition duration-300">
                             <img src="https://ui-avatars.com/api/?name={{ Auth::user()->username }}" alt="avatar" class="w-8 h-8 rounded-full">
-                            <span class="hidden sm:inline font-semibold">{{ auth()->user()->username }}</span>
+                             <span class="hidden sm:inline font-semibold">{{ auth()->user()->username }}</span>
                         </a>
         
                         <!-- Cerrar sesión -->

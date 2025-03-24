@@ -39,17 +39,20 @@
             @foreach ($posts as $post)
             <div>
 
-                <a>
+                <a href="{{ route('posts.show', ['post' => $post, 'user' => $user]) }}">
                     <img src="{{ asset('uploads') . '/' . $post->imagen}}" alt="{{ $post->titulo}}">
                 </a>
             </div>
         @endforeach
         </div>
     </section>
-    @else
 
+    <div class="bg-10">
+       {{ $posts->links() }}
+    </div>
+    @else
     <section class="container mx-auto mt-10">
-        <h2 class="text-4xl text-center font-black my-10">No hay publicaciones</h2>
+        <h2 class="text-1xl text-center font-black my-10">No hay publicaciones</h2>
     </section>
         
     @endif

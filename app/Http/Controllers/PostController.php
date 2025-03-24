@@ -11,7 +11,7 @@ class PostController extends Controller
 {
     public function index(User $user){
 
-        $posts = Post::Where('user_id', $user->id)->get();
+        $posts = Post::Where('user_id', $user->id)->paginate(20);
 
        // dd($user->username);
        return view('layauts.dashboard', [
@@ -47,5 +47,12 @@ class PostController extends Controller
     ]);
 
         return redirect()->route('post.index', auth()->user()->username);
+    }
+
+    public function show(User $user, post $post){
+        return view('post.show', [
+            'post' => $post,
+            'user' => $user
+        ]);
     }
 }
