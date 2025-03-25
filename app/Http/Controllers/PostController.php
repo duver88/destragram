@@ -5,10 +5,14 @@ namespace App\Http\Controllers;
 use App\Models\Post;
 use App\Models\User;
 use Illuminate\Http\Request;
+use Illuminate\Routing\Route;
+use App\Http\Middleware\validar;
 use PhpParser\Node\Expr\FuncCall;
+use Illuminate\Auth\Middleware\Authenticate;
 
 class PostController extends Controller
 {
+
     public function index(User $user){
 
         $posts = Post::Where('user_id', $user->id)->paginate(20);

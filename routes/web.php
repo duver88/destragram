@@ -1,12 +1,13 @@
 <?php
 
-use App\Http\Controllers\ImagenController;
-use App\Http\Controllers\LoginController;
-use App\Http\Controllers\LogoutController;
-use App\Http\Controllers\PostController;
-use App\Http\Controllers\RegisterController;
-use Illuminate\Container\Attributes\Auth;
+use App\Http\Middleware\validar;
 use Illuminate\Support\Facades\Route;
+use App\Http\Controllers\PostController;
+use App\Http\Controllers\LoginController;
+use Illuminate\Container\Attributes\Auth;
+use App\Http\Controllers\ImagenController;
+use App\Http\Controllers\LogoutController;
+use App\Http\Controllers\RegisterController;
 
 Route::get('/', function () {
     return view('principal');
@@ -18,11 +19,11 @@ Route::get('/login', [LoginController::class, 'index'])->name('login');
 Route::post('/login', [LoginController::class, 'store'])->name('login');
 Route::post('/logout', [LogoutController::class, 'store'])->name('logout');
 
-Route::get('/{user:username}', [PostController::class, 'index'])->name('post.index')->middleware('auth');
+Route::get('/{user:username}', [PostController::class, 'index'])->name('post.index')->middleware(validar ::class.':validar');
 //View post
-Route::post('/post', [PostController::class,'store'])->name('post.store');
-Route::get('/post/create', [PostController::class, 'create'])->name('create.index');
-Route::get('/{user:username}/post/{post}', [PostController::class, 'show'])->name('posts.show');
+Route::post('/post', [PostController::class,'store'])->name('post.store')->middleware(validar ::class.':validar');
+Route::get('/post/create', [PostController::class, 'create'])->name('create.index')->middleware(validar ::class.':validar');
+Route::get('/{user:username}/post/{post}', [PostController::class, 'show'])->name('posts.show')->withoutMiddleware([validar::class. 'valirdar']);
 //Imagen Controller
 
 Route::post('/imagen', [ImagenController::class, 'store'])->name('imagen.index');
