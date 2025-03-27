@@ -19,7 +19,10 @@
         </div>
     </div>
 
-    <div class="md: w-1/2  p-5">
+        
+   
+    <div class="md: w-1/2  ml-5">
+        @auth
         <div class="shadow bg-white p-5 mb-5 rounded-2xl">
             @if(session('mensaje'))
                 <div class="bg-green-500 p-2 rounded-lg mb-6 text-white uppercase font-bold text-center">
@@ -48,8 +51,45 @@
                 class="bg-sky-600 hover:bg-sky-700 transition-colors duration-200 w-full text-white p-3 rounded-md"
                 >
             </form>
+            @endauth
+            <div class="bg-white shadow max-h-96 overflow-scroll  rounded-2xl">
+                
+                @if($post->comentarios->count())
+                    @foreach ($post->comentarios as $comentario)
+                        <div
+                            class="flex-col w-full py-4 mx-auto mt-3 bg-white border-b-2 border-r-2 border-gray-200 sm:px-4 sm:py-4 md:px-4 sm:rounded-lg sm:shadow-sm md:w-3/3">
+                            <div class="flex flex-row md-10">
+                                <img class="w-12 h-12 border-2 border-gray-300 rounded-full" alt="Anonymous's avatar"
+                                    src="https://images.unsplash.com/photo-1492562080023-ab3db95bfbce?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=facearea&faces=1&faceindex=1&facepad=2.5&w=500&h=500&q=80">
+                                <div class="flex-col mt-1">
+                                    <div class="flex items-center flex-1 px-4 font-bold leading-tight">
+                                    <a href="{{ route('post.index',$comentario->nombreDelComentario->username )}}">{{$comentario->nombreDelComentario->username}}</a>    
+                                    
+                                        <span class="ml-2 text-xs font-normal text-gray-500">{{ $comentario->created_at->diffForHumans()}}</span>
+                                    </div>
+                                    <div class="flex-1 px-2 ml-2 text-sm font-medium leading-loose text-gray-600">{{ $comentario->comentario}}
+                                    </div>
+                                    
+                                </div>
+                            </div>
+                        </div>
+            
+                
+                
+                       
+                    @endforeach
+                    
+                @else
+                    <p>No hay comentarios</p>
+                @endif
+            </div>
+        
         </div>
+        
     </div>
-</div>
 
+
+
+   
+</div>
 @endsection

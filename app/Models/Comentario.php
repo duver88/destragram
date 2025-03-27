@@ -12,4 +12,8 @@ class Comentario extends Model
         'post_id',
         'comentario'
     ];
+
+    public function nombreDelComentario(){
+        return  $this->belongsTo(User::class, 'user_id');
+    }
 }
