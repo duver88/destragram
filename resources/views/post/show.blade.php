@@ -6,7 +6,7 @@
 
 @section('contenido')
 
-<div  class="container mx-auto flex">
+<div  class="container mx-auto md:flex">
     <div class="md: w-1/2 items-center rounded-3xl">
         <img src="{{ asset('uploads') . '/' . $post->imagen  }}" alt=" {{ $post->titulo }}">
         <div class="p-3">
@@ -21,9 +21,14 @@
 
     <div class="md: w-1/2  p-5">
         <div class="shadow bg-white p-5 mb-5 rounded-2xl">
+            @if(session('mensaje'))
+                <div class="bg-green-500 p-2 rounded-lg mb-6 text-white uppercase font-bold text-center">
+                        {{session('mensaje')}}       
+                </div>
+            @endif
             <p class="text-xl font-bold text-center mb-4">Agrega un nuevo comentario </p>
-            <form action="">
-
+            <form action="{{ route('comentarios.store', ['user' => $user, 'post' => $post])}}" method="POST">
+                @csrf
                 <div class="mb-4">
                     <label for="comentario" class="mb-2 block uppercase text-gray-500 font-bold ">Añade un comentario </label>
                     <textarea 

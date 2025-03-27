@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\ComentarioController;
 use App\Http\Middleware\validar;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\PostController;
@@ -25,5 +26,6 @@ Route::post('/post', [PostController::class,'store'])->name('post.store')->middl
 Route::get('/post/create', [PostController::class, 'create'])->name('create.index')->middleware(validar ::class.':validar');
 Route::get('/{user:username}/post/{post}', [PostController::class, 'show'])->name('posts.show')->withoutMiddleware([validar::class. 'valirdar']);
 //Imagen Controller
-
 Route::post('/imagen', [ImagenController::class, 'store'])->name('imagen.index');
+//Comentarios 
+Route::post('/{user:username}/post/{post}', [ComentarioController::class, 'store'])->name('comentarios.store')->withoutMiddleware([validar::class. 'valirdar']);
