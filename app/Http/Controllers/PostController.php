@@ -59,4 +59,9 @@ class PostController extends Controller
             'user' => $user
         ]);
     }
+
+    public function destroy(Post $post){
+      $post->delete();
+      return redirect()->route('post.index', auth()->user()->username);
+    }
 }

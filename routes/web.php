@@ -20,7 +20,7 @@ Route::get('/login', [LoginController::class, 'index'])->name('login');
 Route::post('/login', [LoginController::class, 'store'])->name('login');
 Route::post('/logout', [LogoutController::class, 'store'])->name('logout');
 
-Route::get('/{user:username}', [PostController::class, 'index'])->name('post.index')->middleware(validar ::class.':validar');
+Route::get('/{user:username}', [PostController::class, 'index'])->name('post.index');
 //View post
 Route::post('/post', [PostController::class,'store'])->name('post.store')->middleware(validar ::class.':validar');
 Route::get('/post/create', [PostController::class, 'create'])->name('create.index')->middleware(validar ::class.':validar');
@@ -29,3 +29,5 @@ Route::get('/{user:username}/post/{post}', [PostController::class, 'show'])->nam
 Route::post('/imagen', [ImagenController::class, 'store'])->name('imagen.index');
 //Comentarios 
 Route::post('/{user:username}/post/{post}', [ComentarioController::class, 'store'])->name('comentarios.store')->withoutMiddleware([validar::class. 'valirdar']);
+//Eliminar Comentarios 
+Route::delete('/post/{post}', [PostController::class,'destroy'])->name('posts.destroy');
