@@ -9,6 +9,7 @@ use Illuminate\Routing\Route;
 use App\Http\Middleware\validar;
 use PhpParser\Node\Expr\FuncCall;
 use Illuminate\Auth\Middleware\Authenticate;
+use DragonCode\Support\Facades\Filesystem\File;
 
 class PostController extends Controller
 {
@@ -62,6 +63,12 @@ class PostController extends Controller
 
     public function destroy(Post $post){
       $post->delete();
+      $imagenDelete = public_path('uploads/' . $post->imagen);
+
+      if(File::exists($imagenDelete)){
+        unlink($imagenDelete);
+      }
+
       return redirect()->route('post.index', auth()->user()->username);
     }
 }
