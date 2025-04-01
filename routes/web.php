@@ -7,6 +7,7 @@ use App\Http\Controllers\PostController;
 use App\Http\Controllers\LoginController;
 use Illuminate\Container\Attributes\Auth;
 use App\Http\Controllers\ImagenController;
+use App\Http\Controllers\LikeController;
 use App\Http\Controllers\LogoutController;
 use App\Http\Controllers\RegisterController;
 
@@ -31,3 +32,5 @@ Route::post('/imagen', [ImagenController::class, 'store'])->name('imagen.index')
 Route::post('/{user:username}/post/{post}', [ComentarioController::class, 'store'])->name('comentarios.store')->withoutMiddleware([validar::class. 'valirdar']);
 //Eliminar Comentarios 
 Route::delete('/post/{post}', [PostController::class,'destroy'])->name('posts.destroy');
+
+Route::post('/post/{post}/like', [LikeController::class, 'store'])->name('post.like.store');

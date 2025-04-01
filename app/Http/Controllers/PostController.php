@@ -15,11 +15,8 @@ class PostController extends Controller
 {
 
     public function index(User $user){
-
         $posts = Post::Where('user_id', $user->id)->paginate(20);
-
-       // dd($user->username);
-       return view('layauts.dashboard', [
+        return view('layauts.dashboard', [
            'user' => $user,
            'posts' => $posts
        ]);
@@ -50,7 +47,6 @@ class PostController extends Controller
         'imagen' => $recuest->imagen,
         'user_id' => auth()->user()->id
     ]);
-
         return redirect()->route('post.index', auth()->user()->username);
     }
 
@@ -64,11 +60,9 @@ class PostController extends Controller
     public function destroy(Post $post){
       $post->delete();
       $imagenDelete = public_path('uploads/' . $post->imagen);
-
       if(File::exists($imagenDelete)){
         unlink($imagenDelete);
       }
-
       return redirect()->route('post.index', auth()->user()->username);
     }
 }
