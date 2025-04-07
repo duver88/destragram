@@ -34,3 +34,5 @@ Route::post('/{user:username}/post/{post}', [ComentarioController::class, 'store
 Route::delete('/post/{post}', [PostController::class,'destroy'])->name('posts.destroy');
 
 Route::post('/post/{post}/like', [LikeController::class, 'store'])->name('post.like.store');
+
+Route::delete('/post/{post}/like', [LikeController::class, 'destroy'])->name('post.like.destroy');
