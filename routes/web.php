@@ -9,6 +9,7 @@ use Illuminate\Container\Attributes\Auth;
 use App\Http\Controllers\ImagenController;
 use App\Http\Controllers\LikeController;
 use App\Http\Controllers\LogoutController;
+use App\Http\Controllers\ModificarPerfil;
 use App\Http\Controllers\RegisterController;
 
 Route::get('/', function () {
@@ -36,3 +37,9 @@ Route::delete('/post/{post}', [PostController::class,'destroy'])->name('posts.de
 Route::post('/post/{post}/like', [LikeController::class, 'store'])->name('post.like.store');
 
 Route::delete('/post/{post}/like', [LikeController::class, 'destroy'])->name('post.like.destroy');
+
+//Editar Perfil 
+
+Route::get('{user:username}/editar-perfil', [ModificarPerfil::class, 'index'])->name('modificar.index')->middleware(validar ::class.':validar');
+
+Route::post('{user:username}/editar-perfil', [ModificarPerfil::class, 'store'])->name('modificar.store');
