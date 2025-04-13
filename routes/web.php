@@ -21,11 +21,17 @@ Route::post('/crear-cuentaa', [RegisterController::class, 'store'])->name('crear
 Route::get('/login', [LoginController::class, 'index'])->name('login');
 Route::post('/login', [LoginController::class, 'store'])->name('login');
 Route::post('/logout', [LogoutController::class, 'store'])->name('logout');
+//editar Perfil
 
+Route::get('/editar-perfil', [ModificarPerfil::class, 'index'])->name('modificar.index')->middleware(validar ::class.':validar');
+Route::post('/editar-perfil', [ModificarPerfil::class, 'store'])->name('modificar.store');
+
+//Rutas
 Route::get('/{user:username}', [PostController::class, 'index'])->name('post.index');
 //View post
 Route::post('/post', [PostController::class,'store'])->name('post.store')->middleware(validar ::class.':validar');
 Route::get('/post/create', [PostController::class, 'create'])->name('create.index')->middleware(validar ::class.':validar');
+
 Route::get('/{user:username}/post/{post}', [PostController::class, 'show'])->name('posts.show')->withoutMiddleware([validar::class. 'valirdar']);
 //Imagen Controller
 Route::post('/imagen', [ImagenController::class, 'store'])->name('imagen.index');
@@ -38,8 +44,6 @@ Route::post('/post/{post}/like', [LikeController::class, 'store'])->name('post.l
 
 Route::delete('/post/{post}/like', [LikeController::class, 'destroy'])->name('post.like.destroy');
 
-//Editar Perfil 
 
-Route::get('{user:username}/editar-perfil', [ModificarPerfil::class, 'index'])->name('modificar.index')->middleware(validar ::class.':validar');
 
-Route::post('{user:username}/editar-perfil', [ModificarPerfil::class, 'store'])->name('modificar.store');
+
