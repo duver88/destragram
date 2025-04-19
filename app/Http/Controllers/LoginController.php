@@ -22,7 +22,7 @@ class LoginController extends Controller
         ]);
 
         if (!Auth::attempt($request->only('email', 'password'), $request->remember)) {
-            return back()->with('mensaje', 'Credenciales Incorrectas');
+            return back()->with('mensaje', 'Credenciales Incorrectass');
         }
         
         return redirect()->route('post.index', Auth::user());

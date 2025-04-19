@@ -7,7 +7,14 @@
     <div class="flex justify-center">
         <div class="w-full md:w-8/12 lg:w-6/12 flex flex-col items-center md:flex-row ">
             <div class="w-8/12 lg:w-6/12 px-5">
-                <img src="{{ asset('profile') . '/' . auth()->user()->imagen  }}" alt=" {{ auth()->user()->imagen }}" >
+                <img src="{{ 
+                    $user->imagen ? 
+                    asset('profile') . '/' . auth()->user()->imagen :
+                    asset('img/usuario.svg')}}" 
+                    alt=" {{ $user->imagen ? 
+                    auth()->user()->imagen:
+                    asset('img/usuario.svg')
+                    }}" >
                 
             </div>
             <div class="md:w-8/12 lg:w-6/12 px-5 flex flex-col items-center md:justify-center md:items-start py-10 md:py-10">
@@ -39,7 +46,7 @@
 
                 
                 <p class="text-gray-700 text-sm mb-2 font-bold">
-                    0
+                    {{ $posts->count()}} 
                     <span class="font-normal">Post</span>
                 </p>
             </div>
