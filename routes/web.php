@@ -1,6 +1,7 @@
 <?php
 
 use App\Http\Controllers\ComentarioController;
+use App\Http\Controllers\FollowerController;
 use App\Http\Middleware\validar;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\PostController;
@@ -11,6 +12,7 @@ use App\Http\Controllers\LikeController;
 use App\Http\Controllers\LogoutController;
 use App\Http\Controllers\ModificarPerfil;
 use App\Http\Controllers\RegisterController;
+use App\Models\Follower;
 
 Route::get('/', function () {
     return view('principal');
@@ -18,7 +20,7 @@ Route::get('/', function () {
 
 Route::get('/crear-cuentaa', [RegisterController::class, 'index'])->name('register');
 Route::post('/crear-cuentaa', [RegisterController::class, 'store'])->name('crearcuneta');
-Route::get('/login', [LoginController::class, 'index'])->name('login');
+Route::get('/login', [LoginController::class, 'index'])->name('login.index');
 Route::post('/login', [LoginController::class, 'store'])->name('login');
 Route::post('/logout', [LogoutController::class, 'store'])->name('logout');
 //editar Perfil
@@ -44,6 +46,10 @@ Route::post('/post/{post}/like', [LikeController::class, 'store'])->name('post.l
 
 Route::delete('/post/{post}/like', [LikeController::class, 'destroy'])->name('post.like.destroy');
 
+//siguinedo usuarios 
 
+Route::post('/{user:username}/follow', [FollowerController::class, 'store'])->name('users.flowoller');
+
+Route::delete('/{user:username}/unfollow', [FollowerController::class, 'destroy'])->name('users.unflowoller');
 
 

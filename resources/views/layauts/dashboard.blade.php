@@ -7,16 +7,16 @@
     <div class="flex justify-center">
         <div class="w-full md:w-8/12 lg:w-6/12 flex flex-col items-center md:flex-row ">
             <div class="w-8/12 lg:w-6/12 px-5">
-                <img src="{{ 
-                    $user->imagen ? 
-                    asset('profile') . '/' . auth()->user()->imagen :
-                    asset('img/usuario.svg')}}" 
-                    alt=" {{ $user->imagen ? 
-                    auth()->user()->imagen:
-                    asset('img/usuario.svg')
-                    }}" >
-                
+                <img
+                  src="{{ $user->imagen
+                      ? asset('profile/' . $user->imagen)
+                      : asset('img/usuario.svg')
+                  }}"
+                  alt="Avatar de {{ $user->name }}"
+                  class="rounded-full"
+                >
             </div>
+            
             <div class="md:w-8/12 lg:w-6/12 px-5 flex flex-col items-center md:justify-center md:items-start py-10 md:py-10">
                <div class="flex gap-2">
                     <p>{{$user->username }}</p>
@@ -49,6 +49,33 @@
                     {{ $posts->count()}} 
                     <span class="font-normal">Post</span>
                 </p>
+                @auth   
+                    @if($user->id !== auth()->user()->id)
+                    <form action="{{ route('users.flowoller', $user)}}"
+                    method="POST"
+                    >
+                    @csrf
+                    <input 
+                        type="submit"
+                        class="bg-blue-600 text-white uppercase rounded-lg px-3 py-1
+                        text-xs font-bold cursor-pointer"
+                        value="Seguir"
+                    >
+                    </form>
+
+                    <form action="{{ route('users.unflowoller', $user)}}" method="POST">
+                        @method('DELETE')
+                        @csrf
+                    
+                    <input 
+                        type="submit"
+                        class="bg-red-600 text-white uppercase rounded-lg px-3 py-1
+                        text-xs font-bold cursor-pointer"
+                        value="Dejar de seguir"
+                    >
+                    </form>
+                    @endif
+                @endauth
             </div>
         </div>
     </div>
@@ -78,11 +105,5 @@
     </section>
         
     @endif
-    
-        
-   
-
-
-
 
 @endsection
