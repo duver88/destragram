@@ -15,7 +15,7 @@ class PostController extends Controller
 {
 
     public function index(User $user, Post $posts){
-        $posts = Post::Where('user_id', $user->id)->paginate(20);
+        $posts = Post::Where('user_id', $user->id)->latest()->paginate(20);
         return view('layauts.dashboard', [
            'user' => $user,
            'posts' => $posts
