@@ -12,9 +12,6 @@ use Intervention\Image\ImageManager;
 use Intervention\Image\Drivers\Gd\Driver;
 
 class ModificarPerfil extends Controller
-
-
-
 {
     public function index(){
        return view('perfil.index');
@@ -24,7 +21,6 @@ class ModificarPerfil extends Controller
         $request->validate([
             'username' => [ 'max:30', 'unique:users,username,' .auth()->user()->id],
             'email' => ['unique:users,username,' .auth()->user()->id,'email' ],
-            
         ]);
 
         if($request->imagen){
@@ -38,8 +34,6 @@ class ModificarPerfil extends Controller
             $imagenServidor->save($imagenesPath);
             
         }
-
-
         //Validar contraseña
             if (Auth::attempt( ['email' => auth()->user()->email, 'password' => $request->password], $request->remember)) {      
             $userGuardarPss = $request->passwordnew;
@@ -54,13 +48,8 @@ class ModificarPerfil extends Controller
         } else{
             return back()->with('mensaje', 'Credenciales Incorrectas');
         }
-        
         //Redirect
-
         return redirect()->route('post.index', $userGuardar->username);
-
-        
-
     }
 
 

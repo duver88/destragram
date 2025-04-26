@@ -2,6 +2,7 @@
 
 use App\Http\Controllers\ComentarioController;
 use App\Http\Controllers\FollowerController;
+use App\Http\Controllers\HomeController;
 use App\Http\Middleware\validar;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\PostController;
@@ -14,9 +15,7 @@ use App\Http\Controllers\ModificarPerfil;
 use App\Http\Controllers\RegisterController;
 use App\Models\Follower;
 
-Route::get('/', function () {
-    return view('principal');
-});
+Route::get('/', [HomeController::class, 'index'])->name('home');
 
 Route::get('/crear-cuentaa', [RegisterController::class, 'index'])->name('register');
 Route::post('/crear-cuentaa', [RegisterController::class, 'store'])->name('crearcuneta');

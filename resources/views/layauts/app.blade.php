@@ -16,7 +16,7 @@
             <div class="container mx-auto px-6 py-4 flex justify-between items-center">
                 
                 <!-- LOGO -->
-                <a href="{{ route('create.index') }}" class="text-4xl font-extrabold text-indigo-600 hover:text-indigo-800 transition duration-300">
+                <a href="{{ route('home') }}" class="text-4xl font-extrabold text-indigo-600 hover:text-indigo-800 transition duration-300">
                     Destagram
                 </a>
         
