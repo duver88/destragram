@@ -5,7 +5,7 @@
         <meta name="viewport" content="width=device-width, initial-scale=1">
         @stack('style')
         <title>Destagram - @yield('titulo')</title>
-
+        @livewireStyles
        @vite('resources/css/app.css')
        @vite('resources/js/app.js')
 
@@ -16,7 +16,7 @@
             <div class="container mx-auto px-6 py-4 flex justify-between items-center">
                 
                 <!-- LOGO -->
-                <a href="{{ route('home') }}" class="text-4xl font-extrabold text-indigo-600 hover:text-indigo-800 transition duration-300">
+                <a href="{{ route('home')}}" class="text-4xl font-extrabold text-indigo-600 hover:text-indigo-800 transition duration-300">
                     Destagram
                 </a>
         
@@ -72,7 +72,7 @@
         </footer>
 
        
-  
+        @livewireScripts
     </body>
 </html>
 

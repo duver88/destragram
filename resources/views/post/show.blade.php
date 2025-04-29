@@ -11,6 +11,7 @@
         <img src="{{ asset('uploads') . '/' . $post->imagen  }}" alt=" {{ $post->titulo }}">
 
         @auth
+        
         <div class="py-4">
             <div class="pt-4 flex items-center gap-4">
                 @if($post->chekLikes(auth()->user()))
@@ -45,6 +46,10 @@
                 @endif
 
                 @endauth 
+
+
+                <livewire:like-post :post="$post" />
+
                 {{ $post->likes->count()}} Likes
             </div>
  

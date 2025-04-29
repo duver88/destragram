@@ -1,7 +1,7 @@
 @extends('layauts.app')
 
 @section('titulo')
-    Página Principal
+   Página Principal
 @endsection
 
 @section('contenido')
